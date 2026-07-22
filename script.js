@@ -1574,7 +1574,433 @@ function resetSeksyen18A(){
 
 }
 
+// =====================================================
+// KALKULATOR GAJI GANTI NOTIS (GGN)
+// JENIS TEMPOH BULAN
+// =====================================================
 
+
+function calculateGGNMonth(){
+
+
+
+    let totalSalary =
+    updateSalaryTotal(
+        "ggnBasicSalary",
+        "ggnAllowance",
+        "ggnTotalSalary"
+    );
+
+
+
+    let month =
+    Number(
+        getElement(
+            "ggnMonthNotice"
+        ).value
+    );
+
+
+
+    if(!month){
+
+
+        alert(
+            "Sila masukkan bilangan bulan notis."
+        );
+
+
+        return;
+
+    }
+
+
+
+
+    let amount =
+    totalSalary *
+    month;
+
+
+
+
+    setText(
+        "ggnResultMonth",
+        month + " Bulan"
+    );
+
+
+
+    setText(
+        "ggnAmount",
+        formatRM(amount)
+    );
+
+
+
+}
+
+
+
+
+
+
+// =====================================================
+// KALKULATOR GAJI GANTI NOTIS (GGN)
+// JENIS TEMPOH MINGGU
+// =====================================================
+
+
+function calculateGGNWeek(){
+
+
+
+    let totalSalary =
+    updateSalaryTotal(
+        "ggnBasicSalary",
+        "ggnAllowance",
+        "ggnTotalSalary"
+    );
+
+
+
+
+    let week =
+    Number(
+        getElement(
+            "ggnWeekNotice"
+        ).value
+    );
+
+
+
+
+    let startDate =
+    getElement(
+        "ggnWeekStartDate"
+    ).value;
+
+
+
+
+    if(!week){
+
+
+        alert(
+            "Sila masukkan bilangan minggu notis."
+        );
+
+
+        return;
+
+    }
+
+
+
+
+    if(!startDate){
+
+
+        alert(
+            "Sila masukkan Tarikh Mula Notis."
+        );
+
+
+        return;
+
+    }
+
+
+
+
+    let start =
+    new Date(startDate);
+
+
+
+
+    let totalDays =
+    week * 7;
+
+
+
+
+    let end =
+    new Date(start);
+
+
+
+    end.setDate(
+        end.getDate()
+        +
+        totalDays
+        -
+        1
+    );
+
+
+
+
+
+    let amount =
+    calculateGGNByMonth(
+        totalSalary,
+        start,
+        end
+    );
+
+
+
+
+
+
+    setText(
+        "ggnWeekDays",
+        totalDays + " Hari"
+    );
+
+
+
+
+
+    setText(
+        "ggnWeekResultEndDate",
+        end.toLocaleDateString(
+            "ms-MY"
+        )
+    );
+
+
+
+
+
+    setText(
+        "ggnWeekAmount",
+        formatRM(amount)
+    );
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================================
+// RESET GGN BULAN
+// =====================================================
+
+
+function resetGGNMonth(){
+
+
+
+    setValue(
+        "ggnMonthNotice",
+        ""
+    );
+
+
+
+    setText(
+        "ggnResultMonth",
+        "0 Bulan"
+    );
+
+
+
+    setText(
+        "ggnAmount",
+        "RM 0.00"
+    );
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================================
+// RESET GGN MINGGU
+// =====================================================
+
+
+function resetGGNWeek(){
+
+
+
+    [
+
+        "ggnWeekNotice",
+        "ggnWeekStartDate",
+        "ggnWeekEndDate"
+
+    ]
+    .forEach(
+        id=>setValue(id,"")
+    );
+
+
+
+
+
+    setText(
+        "ggnWeekDays",
+        "0 Hari"
+    );
+
+
+
+    setText(
+        "ggnWeekResultEndDate",
+        "-"
+    );
+
+
+
+    setText(
+        "ggnWeekAmount",
+        "RM 0.00"
+    );
+
+
+
+}
+
+
+
+
+
+// =====================================================
+// KIRA GGN IKUT BILANGAN HARI
+// (DIGUNAKAN OLEH MINGGU)
+// =====================================================
+
+
+function calculateGGNByMonth(
+    salary,
+    start,
+    end
+){
+
+
+
+    let total = 0;
+
+
+
+    let current =
+    new Date(start);
+
+
+
+
+
+    while(
+        current <= end
+    ){
+
+
+
+        let year =
+        current.getFullYear();
+
+
+
+        let month =
+        current.getMonth();
+
+
+
+
+        let monthDays =
+        new Date(
+            year,
+            month + 1,
+            0
+        )
+        .getDate();
+
+
+
+
+        let firstDay =
+        current.getDate();
+
+
+
+
+        let lastDay =
+        monthDays;
+
+
+
+        if(
+            year === end.getFullYear()
+            &&
+            month === end.getMonth()
+        ){
+
+
+            lastDay =
+            end.getDate();
+
+
+        }
+
+
+
+
+        let days =
+        lastDay -
+        firstDay
+        +
+        1;
+
+
+
+
+
+        let dailyRate =
+        salary /
+        monthDays;
+
+
+
+
+
+        total +=
+        dailyRate *
+        days;
+
+
+
+
+        current =
+        new Date(
+            year,
+            month + 1,
+            1
+        );
+
+
+    }
+
+
+
+
+
+    return total;
+
+
+}
 
 
 // =====================================================
