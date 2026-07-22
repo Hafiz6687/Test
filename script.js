@@ -1583,16 +1583,6 @@ function resetSeksyen18A(){
 function calculateGGNMonth(){
 
 
-
-    let totalSalary =
-    updateSalaryTotal(
-        "ggnBasicSalary",
-        "ggnAllowance",
-        "ggnTotalSalary"
-    );
-
-
-
     let month =
     Number(
         getElement(
@@ -1601,14 +1591,11 @@ function calculateGGNMonth(){
     );
 
 
-
     if(!month){
-
 
         alert(
             "Sila masukkan bilangan bulan notis."
         );
-
 
         return;
 
@@ -1616,11 +1603,17 @@ function calculateGGNMonth(){
 
 
 
+    let totalSalary =
+    Number(
+        getElement(
+            "ggnTotalSalary"
+        )?.value.replace(/[^0-9.]/g,"")
+    ) || 0;
+
+
 
     let amount =
-    totalSalary *
-    month;
-
+    totalSalary * month;
 
 
 
@@ -1630,12 +1623,10 @@ function calculateGGNMonth(){
     );
 
 
-
     setText(
         "ggnAmount",
         formatRM(amount)
     );
-
 
 
 }
@@ -1789,13 +1780,7 @@ function calculateGGNWeek(){
 
 
 
-// =====================================================
-// RESET GGN BULAN
-// =====================================================
-
-
 function resetGGNMonth(){
-
 
 
     setValue(
@@ -1804,12 +1789,10 @@ function resetGGNMonth(){
     );
 
 
-
     setText(
         "ggnResultMonth",
         "0 Bulan"
     );
-
 
 
     setText(
@@ -1818,9 +1801,7 @@ function resetGGNMonth(){
     );
 
 
-
 }
-
 
 
 
@@ -2001,142 +1982,6 @@ function calculateGGNByMonth(
 
 
 }
-
-
-// =====================================================
-// KIRA GGN IKUT BULAN
-// =====================================================
-
-
-function calculateGGNByMonth(
-    salary,
-    start,
-    end
-){
-
-
-
-    let total = 0;
-
-
-
-    let current =
-    new Date(start);
-
-
-
-
-
-    while(
-        current <= end
-    ){
-
-
-
-        let year =
-        current.getFullYear();
-
-
-
-        let month =
-        current.getMonth();
-
-
-
-
-        let monthDays =
-        new Date(
-            year,
-            month + 1,
-            0
-        )
-        .getDate();
-
-
-
-
-
-        let firstDay =
-        current.getDate();
-
-
-
-
-
-        let lastDay =
-        monthDays;
-
-
-
-
-
-        if(
-            year === end.getFullYear()
-            &&
-            month === end.getMonth()
-        ){
-
-
-            lastDay =
-            end.getDate();
-
-
-        }
-
-
-
-
-
-
-        let days =
-        lastDay -
-        firstDay
-        +
-        1;
-
-
-
-
-
-
-        let dailyRate =
-        salary /
-        monthDays;
-
-
-
-
-
-        total +=
-        dailyRate *
-        days;
-
-
-
-
-
-
-        current =
-        new Date(
-            year,
-            month + 1,
-            1
-        );
-
-
-
-    }
-
-
-
-
-
-    return total;
-
-
-
-}
-
 
 
 
