@@ -1437,41 +1437,24 @@ RM 0.00
 
 <!-- =====================================================
      KALKULATOR GAJI GANTI NOTIS
+     JENIS TEMPOH (BULAN)
 ===================================================== -->
-
 
 <section class="calculator-card calculator-card-large">
 
-
 <h2>
 Kalkulator<br>
-Gaji Ganti Notis
+Gaji Ganti Notis<br>
+Jenis Tempoh (Bulan)
 </h2>
-
-
-
-
-
-<!-- =====================================================
-     JENIS NOTIS BULAN
-===================================================== -->
-
-
-<h3>
-Jenis Notis (Bulan)
-</h3>
-
-
 
 
 
 <div class="form-group">
 
-
 <label>
 Bilangan Bulan
 </label>
-
 
 <input
 type="number"
@@ -1480,18 +1463,12 @@ class="number-input"
 placeholder="Contoh: 2"
 min="1">
 
-
 </div>
 
 
 
 
-
-
-
-
 <div class="button-group">
-
 
 <button
 class="btn btn-primary"
@@ -1511,28 +1488,17 @@ Reset
 
 </button>
 
-
 </div>
 
 
 
 
 
-
-
-<!-- =====================================================
-     KEPUTUSAN JENIS NOTIS BULAN
-===================================================== -->
-
-
 <div class="result-box">
-
 
 <h3>
 Keputusan
 </h3>
-
-
 
 
 
@@ -1542,17 +1508,13 @@ Keputusan
 Bilangan Bulan Notis
 </strong>
 
-
 <span id="ggnResultMonth">
 
 0 Bulan
 
 </span>
 
-
 </p>
-
-
 
 
 
@@ -1563,49 +1525,43 @@ Bilangan Bulan Notis
 Bayaran Gaji Ganti Notis
 </strong>
 
-
 <span id="ggnAmount">
 
 RM 0.00
 
 </span>
 
-
 </p>
-
-
 
 
 
 </div>
 
+</section>
+
 
 
 <!-- =====================================================
-     JENIS NOTIS MINGGU
+     KALKULATOR GAJI GANTI NOTIS
+     JENIS TEMPOH (MINGGU)
 ===================================================== -->
 
+<section class="calculator-card calculator-card-large">
 
-<h3>
-Jenis Notis (Minggu)
-</h3>
-
-
-
-
-
+<h2>
+Kalkulator<br>
+Gaji Ganti Notis<br>
+Jenis Tempoh (Minggu)
+</h2>
 
 
-<!-- ORP AUTO EXTRACT -->
 
 
 <div class="form-group">
 
-
 <label>
 ORP
 </label>
-
 
 <input
 type="text"
@@ -1614,25 +1570,17 @@ class="salary-total"
 value="RM 0.00"
 readonly>
 
-
 </div>
 
 
 
 
 
-
-
-<!-- BILANGAN MINGGU -->
-
-
 <div class="form-group">
-
 
 <label>
 Bilangan Minggu
 </label>
-
 
 <input
 type="number"
@@ -1641,67 +1589,47 @@ class="number-input"
 placeholder="Contoh: 4"
 min="1">
 
-
 </div>
 
 
 
 
 
-
-
-<!-- TARIKH MULA NOTIS -->
-
-
 <div class="form-group">
-
 
 <label>
 Tarikh Mula Notis
 </label>
-
 
 <input
 type="date"
 id="ggnWeekStartDate"
 class="date-input">
 
-
 </div>
 
 
 
 
 
-
-
-<!-- TARIKH AKHIR NOTIS -->
-
-
 <div class="form-group">
-
 
 <label>
 Tarikh Akhir Notis
 </label>
-
 
 <input
 type="date"
 id="ggnWeekEndDate"
 class="date-input">
 
-
 </div>
 
 
 
 
 
-
-
 <div class="button-group">
-
 
 <button
 class="btn btn-primary"
@@ -1713,8 +1641,6 @@ Kira
 
 
 
-
-
 <button
 class="btn btn-reset"
 onclick="resetGGNWeek()">
@@ -1723,28 +1649,17 @@ Reset
 
 </button>
 
-
 </div>
 
 
 
 
 
-
-
-<!-- =====================================================
-     KEPUTUSAN JENIS NOTIS MINGGU
-===================================================== -->
-
-
 <div class="result-box">
-
 
 <h3>
 Keputusan
 </h3>
-
-
 
 
 
@@ -1754,16 +1669,13 @@ Keputusan
 Bilangan Hari Notis
 </strong>
 
-
 <span id="ggnWeekDays">
 
 0 Hari
 
 </span>
 
-
 </p>
-
 
 
 
@@ -1775,16 +1687,13 @@ Bilangan Hari Notis
 Tarikh Akhir Notis
 </strong>
 
-
 <span id="ggnWeekResultEndDate">
 
 -
 
 </span>
 
-
 </p>
-
 
 
 
@@ -1796,29 +1705,21 @@ Tarikh Akhir Notis
 Bayaran Gaji Ganti Notis
 </strong>
 
-
 <span id="ggnWeekAmount">
 
 RM 0.00
 
 </span>
 
-
 </p>
-
-
 
 
 
 </div>
 
-
-
-
-
 </section>
 
-  
+     
 <!-- =====================================================
      KALKULATOR KERJA HARI REHAT
      1/2 HARI @ KURANG
