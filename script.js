@@ -2866,28 +2866,6 @@ function resetOTPH(){
 }
 
 
-// =====================================================
-// LOAD ORP KE KALKULATOR GGN MINGGU
-// =====================================================
-
-function loadGGNWeekORP(){
-
-    let orp =
-    localStorage.getItem("ORP");
-
-
-    let field =
-    document.getElementById("ggnWeekORP");
-
-
-    if(field && orp){
-
-        field.value =
-        "RM " + Number(orp).toFixed(2);
-
-    }
-
-}
 
 
 
