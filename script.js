@@ -1579,15 +1579,12 @@ function resetSeksyen18A(){
 // JENIS TEMPOH BULAN
 // =====================================================
 
-
 function calculateGGNMonth(){
 
 
     let month =
     Number(
-        getElement(
-            "ggnMonthNotice"
-        ).value
+        getElement("ggnMonthNotice").value
     );
 
 
@@ -1604,11 +1601,9 @@ function calculateGGNMonth(){
 
 
     let totalSalary =
-    Number(
-        getElement(
-            "ggnTotalSalary"
-        )?.value.replace(/[^0-9.]/g,"")
-    ) || 0;
+    getInputNumber(
+        "ggnTotalSalary"
+    );
 
 
 
@@ -1630,8 +1625,6 @@ function calculateGGNMonth(){
 
 
 }
-
-
 
 
 
