@@ -1242,6 +1242,55 @@ function resetGGN(){
 
 
 }
+// =====================================================
+// KALKULATOR ORP (KADAR UPAH BIASA)
+// =====================================================
+
+function calculateORP(){
+
+
+    let gajiPokok =
+    getInputNumber("gajiPokok");
+
+
+    let elaun =
+    getInputNumber("elaun");
+
+
+
+    let jumlahUpah =
+    gajiPokok + elaun;
+
+
+
+    let orp =
+    jumlahUpah / 26;
+
+
+
+    // Papar ORP
+
+    let hasilORP =
+    document.getElementById("hasilORP");
+
+
+    if(hasilORP){
+
+        hasilORP.innerHTML =
+        "RM " + orp.toFixed(2);
+
+    }
+
+
+
+    // Simpan ORP untuk kalkulator lain
+
+    localStorage.setItem(
+        "ORP",
+        orp.toFixed(2)
+    );
+
+}
 
 
 // =====================================================
@@ -2798,14 +2847,220 @@ function resetOTPH(){
 }
 
 
+// =====================================================
+// LOAD ORP KE KALKULATOR GGN MINGGU
+// =====================================================
+
+function loadGGNWeekORP(){
+
+    let orp =
+    localStorage.getItem("ORP");
+
+
+    let field =
+    document.getElementById("ggnWeekORP");
+
+
+    if(field && orp){
+
+        field.value =
+        "RM " + Number(orp).toFixed(2);
+
+    }
+
+}
 
 
 
+// =====================================================
+// KALKULATOR GAJI GANTI NOTIS
+// JENIS TEMPOH (MINGGU)
+// =====================================================
+
+function calculateGGNWeek(){
+
+
+    // Ambil bilangan minggu
+
+    let minggu =
+    Number(
+        document.getElementById("ggnWeekNotice").value
+    );
 
 
 
+    if(!minggu || minggu <= 0){
+
+        alert(
+            "Sila masukkan bilangan minggu."
+        );
+
+        return;
+
+    }
 
 
+
+    // Ambil ORP dari Kalkulator ORP
+
+    let orp =
+    Number(
+        localStorage.getItem("ORP")
+    );
+
+
+
+    if(!orp || orp <= 0){
+
+        alert(
+            "ORP belum dijana dari Kalkulator ORP."
+        );
+
+        return;
+
+    }
+
+
+
+    // =================================================
+    // KIRAAN GGN MINGGU
+    // Formula:
+    //
+    // Bilangan Minggu × 7 hari × ORP
+    //
+    // =================================================
+
+
+    let jumlahHari =
+    minggu * 7;
+
+
+
+    let bayaranGGN =
+    orp * jumlahHari;
+
+
+
+    // =================================================
+    // TARIKH AKHIR NOTIS
+    // =================================================
+
+
+    let tarikhMula =
+    document.getElementById(
+        "ggnWeekStartDate"
+    ).value;
+
+
+
+    let tarikhAkhir = "-";
+
+
+
+    if(tarikhMula){
+
+
+        let startDate =
+        new Date(tarikhMula);
+
+
+
+        startDate.setDate(
+            startDate.getDate()
+            +
+            jumlahHari
+            -
+            1
+        );
+
+
+
+        tarikhAkhir =
+        startDate.toLocaleDateString(
+            "ms-MY"
+        );
+
+
+
+        document.getElementById(
+            "ggnWeekEndDate"
+        ).value =
+        startDate.toISOString()
+        .split("T")[0];
+
+    }
+
+
+
+    // =================================================
+    // PAPAR KEPUTUSAN
+    // =================================================
+
+
+    document.getElementById(
+        "ggnWeekDays"
+    ).innerHTML =
+    jumlahHari + " Hari";
+
+
+
+    document.getElementById(
+        "ggnWeekResultEndDate"
+    ).innerHTML =
+    tarikhAkhir;
+
+
+
+    document.getElementById(
+        "ggnWeekAmount"
+    ).innerHTML =
+    "RM " + bayaranGGN.toFixed(2);
+
+
+}
+
+
+// =====================================================
+// RESET KALKULATOR GGN MINGGU
+// =====================================================
+
+function resetGGNWeek(){
+
+
+    document.getElementById(
+        "ggnWeekNotice"
+    ).value = "";
+
+
+    document.getElementById(
+        "ggnWeekStartDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "ggnWeekEndDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "ggnWeekDays"
+    ).innerHTML =
+    "0 Hari";
+
+
+    document.getElementById(
+        "ggnWeekResultEndDate"
+    ).innerHTML =
+    "-";
+
+
+    document.getElementById(
+        "ggnWeekAmount"
+    ).innerHTML =
+    "RM 0.00";
+
+
+}
 
 // =====================================================
 // INITIALIZATION
