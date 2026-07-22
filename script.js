@@ -430,15 +430,19 @@ if(
 
 
 // =====================================================
-// KALKULATOR ORP
+// KALKULATOR ORP (KADAR UPAH BIASA)
 // FORMULA:
 // (GAJI POKOK + ELAUN) ÷ 26
 // =====================================================
 
 
-
 function calculateORP(){
 
+
+
+    // ==============================
+    // KIRA JUMLAH UPAH
+    // ==============================
 
 
     let totalSalary =
@@ -450,9 +454,19 @@ function calculateORP(){
 
 
 
+    // ==============================
+    // KIRA ORP
+    // ==============================
+
+
     let ORP =
     totalSalary / 26;
 
+
+
+    // ==============================
+    // PAPAR KEPUTUSAN
+    // ==============================
 
 
     setText(
@@ -468,24 +482,21 @@ function calculateORP(){
     );
 
 
+
+    // ==============================
+    // SIMPAN UNTUK GGN / CUTI
+    // ==============================
+
+
+    localStorage.setItem(
+        "ORP",
+        ORP.toFixed(2)
+    );
+
+
 }
 
-
-
-
-
-
-
-
-
-// =====================================================
-// RESET ORP
-// =====================================================
-
-
-
 function resetORP(){
-
 
 
     setValue(
@@ -520,7 +531,14 @@ function resetORP(){
     );
 
 
+
+    localStorage.removeItem(
+        "ORP"
+    );
+
+
 }
+
 // =====================================================
 // SCRIPT.JS
 // FINAL INTEGRATION VERSION
@@ -1293,56 +1311,6 @@ function resetGGN(){
 
 
 }
-// =====================================================
-// KALKULATOR ORP (KADAR UPAH BIASA)
-// =====================================================
-
-function calculateORP(){
-
-
-    let gajiPokok =
-    getInputNumber("gajiPokok");
-
-
-    let elaun =
-    getInputNumber("elaun");
-
-
-
-    let jumlahUpah =
-    gajiPokok + elaun;
-
-
-
-    let orp =
-    jumlahUpah / 26;
-
-
-
-    // Papar ORP
-
-    let hasilORP =
-    document.getElementById("hasilORP");
-
-
-    if(hasilORP){
-
-        hasilORP.innerHTML =
-        "RM " + orp.toFixed(2);
-
-    }
-
-
-
-    // Simpan ORP untuk kalkulator lain
-
-    localStorage.setItem(
-        "ORP",
-        orp.toFixed(2)
-    );
-
-}
-
 
 // =====================================================
 // KALKULATOR SEKSYEN 18A
