@@ -528,7 +528,58 @@ function resetORP(){
 // =====================================================
 
 
+// =====================================================
+// KALKULATOR ORP
+// FORMULA:
+// (GAJI POKOK + ELAUN) ÷ 26
+// =====================================================
 
+function calculateORP(){
+
+
+    let totalSalary =
+    updateSalaryTotal(
+        "orpBasicSalary",
+        "orpAllowance",
+        "orpTotalSalary"
+    );
+
+
+
+    let ORP =
+    totalSalary / 26;
+
+
+
+    // ==============================
+    // PAPAR KEPUTUSAN
+    // ==============================
+
+
+    setText(
+        "orpResultTotal",
+        formatRM(totalSalary)
+    );
+
+
+    setText(
+        "orpResult",
+        formatRM(ORP)
+    );
+
+
+
+    // ==============================
+    // SIMPAN ORP UNTUK GGN
+    // ==============================
+
+    localStorage.setItem(
+        "ORP",
+        ORP.toFixed(2)
+    );
+
+
+}
 
 
 
